@@ -82,6 +82,23 @@ var auditLogExpress = auditLog.getPlugin('express', {
 app.use(auditLogExpress.middleware);
 ```
 
+The WhiteList also allow you to pass an object containing a `regex`, a array of `methods` and a boolean `logBody`.
+```javascript
+// setup the plugin
+var auditLogExpress = auditLog.getPlugin('express', {
+    userIdPath:['user','_id'],
+    whiteListPaths:[{
+        regex: /^\/some\/particular\/path.*$/,
+        methods: ['GET','POST'],
+        logBody: true
+    }]
+});
+
+// use it in your Express app
+app.use(auditLogExpress.middleware);
+```
+
+
 ## Mongoose
 Log MongoDB database activity by adding this plugin to your models.
 
